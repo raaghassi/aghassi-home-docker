@@ -1,0 +1,3 @@
+[submodule "terraform/aghassi-home-terraform-shared"]
+	path = terraform/aghassi-home-terraform-shared
+	url = http://git.aghassi.home/raaghassi/aghassi-home-terraform-shared
