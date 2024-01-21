@@ -107,4 +107,4 @@
         responses:
           Username: "{{ git_user }}"
           Password: "{{ git_password }}"
-        no_log: true
+        #no_log: true
