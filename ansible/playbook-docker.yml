@@ -63,6 +63,8 @@
     
     - name: Run docker rootless setup script
       command: sh /usr/bin/dockerd-rootless-setuptool.sh install
+      vars:
+        ansible_become: false
     
     - name: Update PATH environment variable
       lineinfile:
