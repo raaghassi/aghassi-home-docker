@@ -64,6 +64,10 @@
       pip:
         name: docker
     
+    - name: Install pexpect
+      pip:
+        name: pexpect
+    
     - name: Run docker rootless setup script
       command: sh /usr/bin/dockerd-rootless-setuptool.sh install
       vars:
