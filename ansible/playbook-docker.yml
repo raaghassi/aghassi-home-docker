@@ -62,7 +62,7 @@
         name: docker
     
     - name: Run docker rootless setup script
-      script: /usr/bin/dockerd-rootless-setuptool.sh install
+      command: sh /usr/bin/dockerd-rootless-setuptool.sh install
     
     - name: Update PATH environment variable
       lineinfile:
