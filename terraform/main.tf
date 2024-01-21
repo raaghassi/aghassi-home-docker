@@ -6,6 +6,8 @@ module "vm_create_from_template_host" {
     vsphere_content_library     = "${var.vsphere_content_library}"
     vm_template                 = "${var.vm_template}"
     hostname                    = "${var.hostname}"
+    numcpu                      = "${var.numcpu}"
+    memory                      = "${var.memory}"
 }
 
 module "vsphere_core" {
