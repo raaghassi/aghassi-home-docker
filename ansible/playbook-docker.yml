@@ -102,7 +102,7 @@
     - name: Add raaghassi to docker group
       user:
         name: raaghassi
-        group: docker
+        groups: docker
         append: yes
     
     - name: Clone the dockerfiles git repo from Gitea
