@@ -83,6 +83,11 @@
         state: present
         line: DOCKER_HOST=unix:///run/user/1000/docker.sock
     
+    - name: Create docker user
+      user:
+        name: docker
+        group: docker
+    
     - name: Create repository directory
       file:
         path: /repositories
