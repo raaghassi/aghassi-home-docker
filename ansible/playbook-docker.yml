@@ -1,6 +1,9 @@
 ---
 - hosts: docker.aghassi.home
   become: true
+
+  vars:
+    new_path: "/usr/bin"
   
   vars_prompt:
     - name: git_user
@@ -68,8 +71,6 @@
     
     - name: Update PATH environment variable
       lineinfile:
-        vars:
-          new_path: "/usr/bin"
         path: /etc/environment
         state: present
         regexp: '^(PATH=\")({{ new_path }}:)?((?(2).*?(?!(?:.\"))|.*?(?!(?:{{ new_path }}))))(:{{ new_path }})?((?(4).*|\"))'
