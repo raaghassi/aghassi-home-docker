@@ -1,6 +1,16 @@
 ---
 - hosts: docker.aghassi.home
   become: true
+  
+  vars_prompt:
+    - name: git_user
+      prompt: Git Username
+      private: no
+    
+    - name: git_password
+      prompt: Git Password
+      private: yes
+  
   tasks:
     - name: Install aptitude
       apt:
@@ -67,3 +77,24 @@
         path: /etc/environment
         state: present
         line: DOCKER_HOST=unix:///run/user/1000/docker.sock
+    
+    - name: Create repository directory
+      file:
+        path: /repositories
+        state: directory
+        owner: docker
+        group: docker
+    
+    - name: Add raaghassi to docker group
+      user:
+        name: raaghassi
+        group: docker
+        append: yes
+    
+    - name: Clone the dockerfiles git repo from Gitea
+      expect:
+        command: git clone http://git.aghassi.home/raaghassi/aghassi-home-dockerfiles.git /repositories
+        responses:
+          Username: "{{ git_user }}"
+          Password: "{{ git_password }}"
+        no_log: true
