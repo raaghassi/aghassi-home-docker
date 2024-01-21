@@ -23,9 +23,9 @@ variable "vm_template" {
 }
 
 variable "hostname" {
-    description = "Hostname of the VM, should be FQDN"
+    description = "Hostname of the VM, CAN'T be FQDN"
     type = string
-    default = "docker.aghassi.home"
+    default = "docker"
 }
 
 variable "domain" {
