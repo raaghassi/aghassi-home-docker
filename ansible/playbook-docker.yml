@@ -70,8 +70,8 @@
       lineinfile:
         path: /etc/environment
         state: present
-        regexp: '^(PATH=\")({{ /usr/bin }}:)?((?(2).*?(?!(?:.\"))|.*?(?!(?:{{ /usr/bin }}))))(:{{ /usr/bin }})?((?(4).*|\"))'
-        line: '\1\3:{{ /usr/bin }}\5'
+        regexp: 'PATH=(["]*)((?!.*?{{extra_path}}).*?)(["]*)$'
+        line: "PATH=\1\2:{{extra_path}}\3"
         backrefs: yes
 
     - name: Add DOCKER_HOST environment variable
