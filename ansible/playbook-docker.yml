@@ -67,7 +67,13 @@
         ansible_become: false
     
     - name: Update PATH environment variable
-      command: "export PATH=/usr/bin:$PATH"
+      lineinfile:
+        path: /etc/environment
+        state: present
+        #regexp: 'PATH=(["]*)((?!.*?{{extra_path}}).*?)(["]*)$'
+        #line: "PATH=\1\2:{{extra_path}}\3"
+        line: "PATH={{ /usr/bin }}:$PATH"
+        backrefs: yes
 
     - name: Add DOCKER_HOST environment variable
       lineinfile:
