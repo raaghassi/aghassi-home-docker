@@ -1,5 +1,5 @@
 module "vm_create_from_template_host" {
-    source = "../aghassi-home-terraform-shared/vm_create_from_template_host"
+    source = "./aghassi-home-terraform-shared/vm_create_from_template_host"
 
     vm_name                     = "${var.vm_name}"
     vsphere_network             = "${var.vsphere_network}"
@@ -9,7 +9,7 @@ module "vm_create_from_template_host" {
 }
 
 module "vsphere_core" {
-    source ="../aghassi-home-terraform-shared/vsphere_core"
+    source ="./aghassi-home-terraform-shared/vsphere_core"
 }
 
 provider "vsphere" {
