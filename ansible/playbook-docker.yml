@@ -78,14 +78,6 @@
     #  become_user: docker
     #  command: sh /usr/bin/dockerd-rootless-setuptool.sh install
 
-    - name: Install Docker and Compose
-      apt:
-        pkg:
-          - docker-ce
-          - docker-compose-plugin
-        state: latest
-        update_cache: true
-
     - name: Update PATH environment variable
       lineinfile:
         path: /etc/environment
