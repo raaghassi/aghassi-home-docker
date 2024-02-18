@@ -75,8 +75,8 @@
     
     - name: Run docker rootless setup script
       ansible_become: true
-      become_user: docker
-        command: sh /usr/bin/dockerd-rootless-setuptool.sh install
+        become_user: docker
+      command: sh /usr/bin/dockerd-rootless-setuptool.sh install
 
     - name: Update PATH environment variable
       lineinfile:
