@@ -74,7 +74,7 @@
         group: docker
     
     - name: Run docker rootless setup script
-      ansible_become: true
+      become: true
       become_user: docker
       command: sh /usr/bin/dockerd-rootless-setuptool.sh install
 
