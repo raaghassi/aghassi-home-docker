@@ -86,11 +86,12 @@
         line: '\1\3:{{ new_path }}\5'
         backrefs: yes
 
-    - name: Add DOCKER_HOST environment variable
-      lineinfile:
-        path: /etc/environment
-        state: present
-        line: DOCKER_HOST=unix:///run/user/1000/docker.sock
+    # this is for rootless docker, breaks rootful
+    #- name: Add DOCKER_HOST environment variable
+    #  lineinfile:
+    #    path: /etc/environment
+    #    state: present
+    #    line: DOCKER_HOST=unix:///run/user/1000/docker.sock
     
     - name: Start and enable dockerd
       service:
