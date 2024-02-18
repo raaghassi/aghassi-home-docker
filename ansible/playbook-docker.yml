@@ -68,11 +68,16 @@
       pip:
         name: pexpect
     
-    - name: Run docker rootless setup script
-      command: sh /usr/bin/dockerd-rootless-setuptool.sh install
-      vars:
-        ansible_become: false
+    - name: Create docker user
+      user:
+        name: docker
+        group: docker
     
+    - name: Run docker rootless setup script
+      ansible_become: true
+      become_user: docker
+      command: sh /usr/bin/dockerd-rootless-setuptool.sh install
+
     - name: Update PATH environment variable
       lineinfile:
         path: /etc/environment
@@ -86,12 +91,7 @@
         path: /etc/environment
         state: present
         line: DOCKER_HOST=unix:///run/user/1000/docker.sock
-    
-    - name: Create docker user
-      user:
-        name: docker
-        group: docker
-    
+
     - name: Create repository directory
       file:
         path: /repositories
