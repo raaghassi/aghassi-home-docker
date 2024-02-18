@@ -78,9 +78,11 @@
     #  become_user: docker
     #  command: sh /usr/bin/dockerd-rootless-setuptool.sh install
 
-    - name: Install Docker
+    - name: Install Docker and Compose
       apt:
-        name: docker-ce
+        pkg:
+          - docker-ce
+          - docker-compose-plugin
         state: latest
         update_cache: true
 
@@ -97,6 +99,12 @@
         path: /etc/environment
         state: present
         line: DOCKER_HOST=unix:///run/user/1000/docker.sock
+    
+    - name: Start and enable dockerd
+      service:
+        name: docker
+        state: started
+        enabled: true
 
     - name: Create repository directory
       file:
