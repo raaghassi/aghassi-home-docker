@@ -107,7 +107,9 @@
     
     - name: Clone the dockerfiles git repo from Gitea
       expect:
-        command: git clone http://git.aghassi.home/raaghassi/aghassi-home-dockerfiles.git /repositories
+        command: git clone http://git.aghassi.home/raaghassi/aghassi-home-dockerfiles.git
+        args:
+          chdir: /repositories
         responses:
           Username: "{{ git_user }}"
           Password: "{{ git_password }}"
