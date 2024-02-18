@@ -56,7 +56,7 @@
           - containerd.io
           - docker-buildx-plugin
           - docker-compose-plugin
-          - docker-ce-rootless-extras
+          #- docker-ce-rootless-extras
         state: latest
         update_cache: true
 
@@ -73,10 +73,16 @@
         name: docker
         group: docker
     
-    - name: Run docker rootless setup script
-      become: true
-      become_user: docker
-      command: sh /usr/bin/dockerd-rootless-setuptool.sh install
+    #- name: Run docker rootless setup script
+    #  become: true
+    #  become_user: docker
+    #  command: sh /usr/bin/dockerd-rootless-setuptool.sh install
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
 
     - name: Update PATH environment variable
       lineinfile:
