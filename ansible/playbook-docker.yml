@@ -123,7 +123,7 @@
       ansible.posix.mount:
         src: "//aghassi-file.aghassi.home/"
         path: "/mnt/aghassi-file"
-        opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
+        opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl,sec=ntlm"
         fstype: cifs
         state: mounted
     
