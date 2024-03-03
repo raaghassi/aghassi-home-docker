@@ -124,7 +124,13 @@
       file:
         path: /mnt/aghassi-file/aghassi_svcs
         state: directory
-        mode: '0777'      
+        mode: '0777'
+
+    - name: Create torrents mount point
+      file:
+        path: /mnt/aghassi-file/torrents
+        state: directory
+        mode: '0777'
 
     - name: Mount aghassi-file/aghassi_media
       ansible.posix.mount:
@@ -138,6 +144,14 @@
       ansible.posix.mount:
         src: "//aghassi-file.aghassi.home/aghassi_svcs"
         path: "/mnt/aghassi-file/aghassi_svcs"
+        opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
+        fstype: cifs
+        state: mounted
+    
+    - name: Mount aghassi-file/torrents
+      ansible.posix.mount:
+        src: "//aghassi-file.aghassi.home/torrents"
+        path: "/mnt/aghassi-file/torrents"
         opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
         fstype: cifs
         state: mounted
