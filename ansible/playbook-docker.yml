@@ -127,7 +127,7 @@
         chdir: /repositories
         command: git clone http://git.aghassi.home/raaghassi/aghassi-home-configs.git
         responses:
-          username: "{{git_user}}"
+          username: "{{ git_user }}"
           password: "{{ git_password }}"
     
     - name: Mount aghassi-file
