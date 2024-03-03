@@ -178,16 +178,16 @@
     - name: Clone the dockerfiles git repo from Gitea
       expect:
         chdir: /repositories
-        command: git clone http://git.aghassi.home/raaghassi/aghassi-home-dockerfiles.git && git clone http://git.aghassi.home/raaghassi/aghassi-home-configs.git
+        command: git clone http://git.aghassi.home/raaghassi/aghassi-home-dockerfiles.git
         responses:
           Username: "{{ git_user }}"
           Password: "{{ git_password }}"
         #no_log: true
 
-    #- name: Clone configs repo from Gitea
-    #  expect:
-    #    chdir: /repositories
-    #    command: git clone http://git.aghassi.home/raaghassi/aghassi-home-configs.git
-    #    responses:
-    #      username: "{{ git_user }}"
-    #      password: "{{ git_password }}"
+    - name: Clone configs repo from Gitea
+      expect:
+        chdir: /repositories
+        command: git clone http://git.aghassi.home/raaghassi/aghassi-home-configs.git
+        responses:
+          username: "{{ git_user }}"
+          password: "{{ git_password }}"
