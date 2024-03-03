@@ -129,3 +129,11 @@
         responses:
           username: "{{git_user}}"
           password: "{{ git_password }}"
+    
+    - name: Mount aghassi-file
+      ansible.posix.mount:
+        src: "//aghassi-file.aghassi.home/"
+        path: /mnt/aghassi-file
+        opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
+        fstype: cifs
+        state: mounted
