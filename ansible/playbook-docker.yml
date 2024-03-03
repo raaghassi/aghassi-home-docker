@@ -118,12 +118,26 @@
       file:
         path: /mnt/aghassi-file/aghassi_media
         state: directory
+        mode: '0777'
+
+    - name: Create configs mount point
+      file:
+        path: /mnt/aghassi-file/aghassi_svcs
+        state: directory
         mode: '0777'      
 
     - name: Mount aghassi-file/aghassi_media
       ansible.posix.mount:
         src: "//aghassi-file.aghassi.home/aghassi_media"
         path: "/mnt/aghassi-file/aghassi_media"
+        opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
+        fstype: cifs
+        state: mounted
+    
+    - name: Mount aghassi-file/aghassi_svcs
+      ansible.posix.mount:
+        src: "//aghassi-file.aghassi.home/aghassi_svcs"
+        path: "/mnt/aghassi-file/aghassi_svcs"
         opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
         fstype: cifs
         state: mounted
