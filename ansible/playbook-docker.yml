@@ -155,7 +155,7 @@
       ansible.posix.mount:
         src: "//aghassi-file.aghassi.home/aghassi_media"
         path: "/mnt/aghassi-file/aghassi_media"
-        opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
+        opts: "uid=1683,gid=1683,rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
         fstype: cifs
         state: mounted
     
@@ -163,7 +163,7 @@
       ansible.posix.mount:
         src: "//aghassi-file.aghassi.home/aghassi_svcs"
         path: "/mnt/aghassi-file/aghassi_svcs"
-        opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
+        opts: "uid=1683,gid=1683,rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
         fstype: cifs
         state: mounted
     
@@ -171,23 +171,23 @@
       ansible.posix.mount:
         src: "//aghassi-file.aghassi.home/torrents"
         path: "/mnt/aghassi-file/torrents"
-        opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
+        opts: "uid=1683,gid=1683,rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
         fstype: cifs
         state: mounted
     
     - name: Clone the dockerfiles git repo from Gitea
       expect:
         chdir: /repositories
-        command: git clone http://git.aghassi.home/raaghassi/aghassi-home-dockerfiles.git
+        command: git clone http://git.aghassi.home/raaghassi/aghassi-home-dockerfiles.git && git clone http://git.aghassi.home/raaghassi/aghassi-home-configs.git
         responses:
           Username: "{{ git_user }}"
           Password: "{{ git_password }}"
         #no_log: true
 
-    - name: Clone configs repo from Gitea
-      expect:
-        chdir: /repositories
-        command: git clone http://git.aghassi.home/raaghassi/aghassi-home-configs.git
-        responses:
-          username: "{{ git_user }}"
-          password: "{{ git_password }}"
+    #- name: Clone configs repo from Gitea
+    #  expect:
+    #    chdir: /repositories
+    #    command: git clone http://git.aghassi.home/raaghassi/aghassi-home-configs.git
+    #    responses:
+    #      username: "{{ git_user }}"
+    #      password: "{{ git_password }}"
