@@ -113,6 +113,12 @@
         groups: docker
         append: yes
     
+    - name: Create aghassi-file mount point
+      file:
+        path: /mnt/aghassi-file
+        state: directory
+        mode: '0777'      
+
     - name: Mount aghassi-file
       ansible.posix.mount:
         src: "//aghassi-file.aghassi.home/"
