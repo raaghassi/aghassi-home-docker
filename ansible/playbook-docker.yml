@@ -114,21 +114,40 @@
         groups: docker
         append: yes
     
+    - name: Create media group
+      group:
+        name: media
+        gid: 1683
+        state: present
+
+    - name: Create media user
+      user:
+        name: media
+        uid: 1683
+        groups: docker, media
+        append: yes
+    
     - name: Create aghassi-file/aghassi_media mount point
       file:
         path: /mnt/aghassi-file/aghassi_media
+        group: media
+        owner: media
         state: directory
         mode: '0777'
 
     - name: Create configs mount point
       file:
         path: /mnt/aghassi-file/aghassi_svcs
+        group: media
+        owner: media
         state: directory
         mode: '0777'
 
     - name: Create torrents mount point
       file:
         path: /mnt/aghassi-file/torrents
+        group: media
+        owner: media
         state: directory
         mode: '0777'
 
