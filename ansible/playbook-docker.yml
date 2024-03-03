@@ -113,16 +113,16 @@
         groups: docker
         append: yes
     
-#    - name: Create aghassi-file mount point
-#      file:
-#        path: /mnt/aghassi-file
-#        state: directory
-#        mode: '0777'      
+    - name: Create aghassi-file mount point
+      file:
+        path: /mnt/aghassi-file
+        state: directory
+        mode: '0777'      
 
     - name: Mount aghassi-file
       ansible.posix.mount:
         src: "//aghassi-file.aghassi.home/"
-        path: /mnt
+        path: "/mnt/aghassi-file"
         opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
         fstype: cifs
         state: mounted
