@@ -32,6 +32,7 @@
           - virtualenv
           - python3-setuptools
           - cifs-utils
+          - keyutils
         state: latest
         update_cache: true
       
@@ -123,7 +124,7 @@
       ansible.posix.mount:
         src: "//aghassi-file.aghassi.home/"
         path: "/mnt/aghassi-file"
-        opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl,sec=ntlm"
+        opts: "rw,vers=3,dom=aghassi,username=media,password=media1683,nobrl"
         fstype: cifs
         state: mounted
     
